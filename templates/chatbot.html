@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="../static/chatbot_style.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+    <div class="user-info">
+        {% if user and user.profilePicture %}
+    		<img src={{user.profilePicture}} alt="Profile Picture" style="width:100px;height:100px;">
+	{% endif %}
+        <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+    </div>
+    <h1>Chat</h1>
+    <div class="conversation-box">
+        <h3>Conversation:</h3>
+        <div class="chat" id="chat-container">
+            {% for chat in chat_history %}
+                <div class="chat-bubble user">
+                    <strong>You:</strong> {{ chat.message }}
+                </div>
+                <div class="chat-bubble ai">
+                    <strong>{{ user.first_name }}:</strong> {{ chat.response }}
+                </div>
+            {% endfor %}
+        </div>
+        <form action="{{ url_for('views.chatbot', profile_id=user.user_id) }}" method="post" class="message-form" onsubmit="return scrollToBottom()">
+            <input type="hidden" name="profile_id" value="{{ user.user_id }}">
+            <input type="hidden" id="location" name="location">
+            <label for="message">Your Message:</label>
+            <input type="text" id="message" name="message" required>
+            <button type="submit">Send</button>
+            <button type="button" id="share-location" onclick="initMap()">Share Location</button>
+    	    <button type="button" id="send-location-btn">Send Location</button>
+        </form>
+    </div>
+    <a href="{{ url_for('views.liked_profiles') }}" class="btn btn-primary">Quit</a>
+    <script>
+        function scrollToBottom() {
+            var chatContainer = document.getElementById("chat-container");
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+            return true;
+        }
+        window.onload = scrollToBottom;
+    </script>
+    <div id="map" style="width: 100%; height: 300px; display:none;"></div>
+    <script>
+    // Add the following code inside your existing script tag
+
+    document.getElementById("share-location").addEventListener("click", function() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            console.log("Geolocation is not supported by this browser.");
+        }
+    });
+    
+    document.getElementById("send-location-btn").addEventListener("click", function() {
+    	sendLocation();
+    });
+
+
+    function showPosition(position) {
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+        document.getElementById("map").style.display = "block";
+        initMap(latitude, longitude);
+    }
+
+    var map;
+    var selectedLocation;
+
+    function initMap() {
+	document.getElementById("map").style.display = "block";
+
+	var map = L.map('map').setView([38.8951100, -77.0363700], 13); // Washington DC
+
+	L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+	    }).addTo(map);
+
+	var marker = L.marker([38.8951100, -77.0363700], {draggable: true}).addTo(map); // Washington DC
+	marker.on('moveend', function(e) {
+    		selectedLocation = e.target.getLatLng();
+	});
+
+	document.getElementById("send-location-btn").addEventListener("click", function() {
+	var latLng = marker.getLatLng();
+	document.getElementById("location").value = JSON.stringify({lat: latLng.lat, lng: latLng.lng});
+    });
+
+    setTimeout(function() {
+        map.invalidateSize();
+    }, 100);}
+
+    function sendLocation() {
+        if (selectedLocation) {
+            var messageForm = document.querySelector(".message-form");
+            var input = document.createElement("input");
+            input.setAttribute("type", "hidden");
+            input.setAttribute("name", "location");
+            input.setAttribute("value", JSON.stringify(selectedLocation));
+            messageForm.appendChild(input);
+            messageForm.submit();
+        } else {
+            alert("Please select a location on the map.");
+        }
+    }
+</script>
+
+
+{% endblock %}

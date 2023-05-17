@@ -1,0 +1,49 @@
+{% block content %}
+<link rel="stylesheet" href="../static/css/liked_disliked_profiles.css">
+<h1>Liked and Disliked Profiles</h1>
+<a href="{{ url_for('main.home_page') }}" class="btn btn-primary">Back to Main Page</a>
+  <a href="{{ url_for('main.matches') }}" class="btn btn-primary">Back to Potential Matches</a>
+  <a href="{{ url_for('main.quiz') }}" class="btn btn-primary">Back to the Quiz Page</a>
+
+<div class="profiles-wrapper">
+    <div class="liked-profiles-container">
+        <h2>Liked Profiles</h2>
+        <div class="liked-profiles">
+            {% for profile in liked_disliked_profiles %}
+    <div class="profile">
+        <img src="{{ url_for('static', filename='sample_images/profile_pictures/' + profile.profile_picture) }}" alt="Profile Picture" style="width:100px;height:100px;">
+        <h3>{{ profile.first_name }} {{ profile.last_name }}</h3>
+        <p>Age: {{ profile.age }}</p>
+        <p>Zodiac Sign: {{ profile.zodiac_sign }}</p>
+        <p>Interests: {{ profile.interests }}</p>
+        <form action="{{ url_for('main.delete_profile', profile_id=profile.id) }}" method="post">
+            <input type="submit" value="Delete" class="btn btn-danger">
+        </form>
+    </div>
+{% endfor %}
+
+        </div>
+    </div>
+
+    <div class="disliked-profiles-container">
+        <h2>Disliked Profiles</h2>
+        <div class="disliked-profiles">
+            {% for profile in liked_disliked_profiles %}
+                <div class="profile">
+                    <img src="{{ url_for('static', filename='sample_images/profile_pictures/' + profile.profile_picture) }}" alt="Profile Picture" style="width:100px;height:100px;">
+                    <h3>{{ profile.first_name }} {{ profile.last_name }}</h3>
+                    <p>Age: {{ profile.age }}</p>
+                    <p>Zodiac Sign: {{ profile.zodiac_sign }}</p>
+                    <p>Interests: {{ profile.interests }}</p>
+                    <form action="{{ url_for('main.delete_profile', profile_id=profile.id) }}" method="post">
+                        <input type="submit" value="Delete" class="btn btn-danger">
+                    </form>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<a href="{{ url_for('main.home_page') }}" class="btn btn-primary">Back to Main Page</a>
+  <a href="{{ url_for('main.matches') }}" class="btn btn-primary">Back to Potential Matches</a>
+  <a href="{{ url_for('main.quiz') }}" class="btn btn-primary">Back to the Quiz Page</a>
+{% endblock %}

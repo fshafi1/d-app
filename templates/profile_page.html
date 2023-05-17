@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../static/profile.css">
+</head>
+<body>
+    <!--Sidebar screen-->
+    <aside>
+        <!--Sidebar image-->
+        <div class="profile-image">
+            {% if user_profile.profile_picture %}
+                <img src="{{ url_for('views.uploaded_file', filename=user_profile.profile_picture) }}" alt="Profile Picture">
+            {% endif %}
+            <p id="user-name">{{user_profile.username}}</p>
+        </div>
+
+        <!--List of links-->
+        <ul class="user-links">
+          <a href="#">Photos</a>
+          <a href="#">Videos</a>
+          <a href="#">Album</a>
+        </ul>
+      </aside>
+
+    <main class="profile-page screen">
+        <div class="overlap-group">
+            <section class="user-info">
+                <!--Contains all user details-->
+                <div class="frame-264">
+                    <div class="artist-name-button">
+                        <!--section for user details-->
+                        <div class="user-details">
+                            <h1 class="user-name valign-text-middle">{{ user_profile.first_name }} {{ user_profile.last_name }}</h1>
+                            
+                            <!-- Added section for email -->
+                            <div class="user-email">
+                                <strong>Email:</strong> {{ user_profile.email }}
+                            </div>
+
+                            <!-- Added section for location -->
+                            <div class="user-location">
+                                <strong>Location:</strong> {{ user_profile.location }}
+                            </div>
+
+                            <!-- Added section for interests -->
+                            <div class="user-interests">
+                                <strong>Interests:</strong> {{ user_profile.interests }}
+                            </div>
+
+                            <!--section for Statisitcs-->
+                            <div class="stats">
+                                <!--Age stat-->
+                                <article class="stats-item-age">
+                                    <div id="age-info">{{ user_profile.age }}</div>
+                                    <div class="stat-detail">Age</div>
+                                </article>
+                                <!--Number of follows-->
+                                <article class="stats-item-follows">
+                                    <div id="follow-info">50+</div>
+                                    <div class="stat-detail">Follows</div>
+                                </article>
+                                <!--Number of matches-->
+                                <article class="stats-item-matches">
+                                    <div id="match-info">3000+</div>
+                                      <a href="{{ url_for('views.quiz') }}">Find Potential Matches</a>
+                                    <div class="stat-detail">Matches</div>
+                                </article>
+                            </div>
+
+                            <!--section for bio-->
+                            <div class="user-info-bio">
+                                <article class="bio">Bio</article>
+                                <p class="bio-detail">
+                                    {{ user_profile.bio}}
+                                </p>
+                            </div>
+
+                            <!--section for Links-->
+                            <div class="user-info-item">
+                                <div class="links">Links</div>
+                                <div class="icons">
+                                    <a href="#" target="_blank"><img class="x-logo" src="twitterlogo.svg" alt="TwitterLogo"></a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                                <!--ct-as for match and follow button-->
+
+                <div class="ct-as">
+                    <article class="button-1">
+                        <a href={{ url_for("views.profile_edit", user_id=user_profile.id)}} >
+                            <div class="match-button">ADD INFO</div>
+                        </a>
+                    </article>
+
+                    <article class="button-2">
+                        <a href={{ url_for("views.profile_edit", user_id=user_profile.id)}} >
+                            <button class="follow-button" >Edit</button>
+                        </a>
+                    </article>
+                </div>
+
+                <!--Background heart-->
+               <!-- <img class="background-heart" src="/asset/Group 13795 1.png">-->
+
+                <!--Cover Picture-->
+                <div class="cover-profile-image">
+                    {% if user_profile.cover_picture %}
+                        <img src="{{ url_for('views.uploaded_file', filename=user_profile.cover_picture) }}" alt="Cover Picture">
+                    {% endif %}
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
+

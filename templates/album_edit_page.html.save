@@ -1,0 +1,111 @@
+<html>
+	<head>
+		<!-- -->
+		<link rel="stylesheet" href="../static/home_page.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<!-- -->
+	</head>
+	<body>
+		<!-- -->		
+		<nav>
+			<!--Left side of the Nav bar -->
+			<div class="nav-left">
+				<img style="width: 50px;" src="static/images/logo.svg" class="logo" alt="D-APP">
+				<ul>
+					<li>
+						<img src="static/images/logo.svg">
+					</li>
+					<li>
+						<img src="static/images/logo.svg">
+					</li>
+				</ul>
+			</div>
+
+			<!--Right side of the Nav bar -->
+			<div class="nav-right">
+				<div class="search-box">
+					<button type="submit"><i class="fa fa-search" style="width: 10px; height: 10px;"></i></button>
+					<input type="text" placeholder="Search">
+				</div>
+				<div class="nav-user-icon" onclick="settingsMenuToggle();">
+					<img style="width: 100px; height: 100px;" src={{user.profilePicture}}>
+				</div>
+			
+			</div>
+			
+			<!--Setting menu -->
+			<div class="settings-menu">				
+				<div class="settings-menu-inner">
+					<div class="user-profile">
+						<img src={{user.profilePicture}}>
+						<div>
+							<p style="color: white;"> {{user.firstName}} {{user.lastName}} <a style="color: white;" href="#"> {{user.zodiacSign}}</a></p>
+							<a style="color: white;" href="{{url_for('views.profile_edit')}}">Edit Your Profile</a>
+						</div>
+					</div>
+					<hr>
+					<div>
+                                                <div class="settings-links">
+							<img src="static/images/recomendations.png" class="settings-icon">
+                                                        <a style="color: white;" href="{{url_for('views.home_page')}}">View recomendations</a>
+                                                </div>
+                                        </div>
+					<hr>
+                                        <div>
+                                                <div class="settings-links">
+							<img src="static/images/album.png" class="settings-icon">
+                                                        <a style="color: white;" href="{{url_for('views.album_page')}}">View album</a>
+                                                </div>
+                                        </div>
+					<hr>
+						<div class="settings-links">
+							<img src="static/images/setting.png" class="settings-icon">
+								<a style="color: white;" href="/payment">Subscription</a>
+						</div>
+					<hr>
+					<div class="settings-links">
+						<img src="static/images/logout.png" class="settings-icon">
+						<a style="color: white;" href="{{url_for('auth.login')}}">Logout</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+			</div>
+                                        <!--Start of image show and upload-->
+                                        <div style="text-align: center;">
+                                                {% for image_file in image_files %}
+        					<div>
+							<hr>
+          						<h1 style="margin: 0
+; padding: 5;">{{ image_file.split('/')[-1] }}</h1>
+          						<form method="POST" action="{{ url_for('views.album_delete', image_path=image_file.split('/')[-1]) }}">
+            							<button type="submit" style="visibility: visible; display: inline-block;">Delete</button>
+          						</form>
+        					</div>
+      						{% endfor %}
+                                        </div>
+					<div style="text-align: center;">
+						<a style="color: white;" href="{{url_for('views.album_page')}}">Back to album</a>
+					</div>
+                                        <!--End of image show and upload-->
+		
+		<div class="footer">
+			<p>Copyright 2023 - D-APP</p>
+		</div>
+
+		<script>
+			var settingsMenu = document.querySelector('.settings-menu');
+			var darkBtn = document.getElementById('dark-btn');
+
+			function settingsMenuToggle(){
+				settingsMenu.classList.toggle('settings-menu-height');
+			}
+
+			darkBtn.onclick = function(){
+				darkBtn.classList.toggle('dark-btn-on');
+			document.body.classList.toggle('dark-theme');
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?sensor=false&callback=initMap"></script>
+    <meta charset="UTF-8">
+    <style>
+        .option {
+            padding: 5px;
+            margin: 5px;
+            width: 150px;
+        }
+
+        .button {
+            background-color: ghostwhite;
+            border: none;
+            color: black;
+            cursor: pointer;
+            font-family: "sherif";
+            font-size: 16px;
+        }
+        nav a {
+            color: #000000;
+            font-size: 3;
+            margin-left: 10px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+      {% block content %} {% endblock %}
+    </div>
+</body>
+</html>

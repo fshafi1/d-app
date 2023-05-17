@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<head>
+    <link rel="stylesheet" href="../static/home_page.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        label {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Find Your Matches</h1>
+        <form action="{{ url_for('views.matches') }}" method="post">
+            {{ form.csrf_token }}
+            <label for="zodiac_sign">Your Zodiac Sign:</label>
+            {{ form.zodiac_sign }}
+            <label for="gender">Gender Preference:</label>
+            {{ form.gender }}
+            <label for="min_age">Minimum Age:</label>
+            {{ form.min_age }}
+            <label for="max_age">Maximum Age:</label>
+            {{ form.max_age }}
+            <input type="submit" value="Find Matches">
+        </form>
+    </div>
+</body>
+{% endblock %}

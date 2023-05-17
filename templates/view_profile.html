@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+ <head>
+		<link rel="stylesheet" href="../static/view_profile.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	</head>
+  </body>
+  <div class="matches-container">
+    <a href="{{ url_for('views.home_page') }}" class="btn btn-primary">Back to Main Page</a>
+    <a href="{{ url_for('views.quiz') }}" class="btn btn-primary">Back to the Quiz Page</a>
+    {# <a href="{{ url_for('views.liked_disliked_profiles') }}">Liked and Disliked Profiles</a> #}
+    <a href="{{ url_for('views.liked_profiles') }}" class="btn btn-primary">Liked Profiles</a>
+    <a href="{{ url_for('views.disliked_profiles') }}" class="btn btn-primary">Disliked Profiles</a>
+   
+    <div class="wrapper">
+            <h1 style="">View Match Profile</h1>
+            <div class="cols">
+            
+  <div class="col" ontouchstart="this.classList.toggle('hover');">
+    <div class="container">
+      <div class="front" style="background-image: url({{profile.profilePicture}})">
+        <div class="inner">
+          <p>{{profile.firstName}} {{profile.lastName}}</p>
+          <span style="font-size: 20px; color: white;">{{profile.zodiacSign}}</span>
+        </div>
+      </div>
+      <div class="back">
+        <div class="inner">
+          <img src={{profile.profilePicture}}>
+          <p>Name:  {{profile.firstName}} {{profile.lastName}} </p>
+          <p>Gender: {{profile.gender}}</p>
+          <p>Age: {{profile.age}}</p>
+          <p>Zodiac Sign: {{profile.zodiacSign}} </p>
+          <p>Preference: {{profile.preference}} </p>
+          <p>Location: {{profile.location}} </p>
+          <p>Interests: {{profile.interests}} </p>
+          <p>Bio: {{profile.bio}} </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </body>
+
+{% endblock %}

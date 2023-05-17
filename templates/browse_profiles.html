@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <link rel="stylesheet" href="../static/css/profile_style.css">
+  
+  <style>
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+
+  .modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+  }
+
+  .close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+  
+  .profile-picture {
+    max-width: 500px; /* Width of the profile picture */
+    max-height: 500px; /* Height of the profile picture */
+    object-fit: cover; /* Aspect ratio and crop the profile picture */
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  </style>
+
+  <div class="profile-container" id="profile-container">
+    {% for profile in profiles %}
+      <div class="profile-card" style="display:none;">
+        <img class="profile-picture" src="{{ url_for('static', filename='sample_images/profile_pictures/' + profile.profile_picture) }}" alt="Profile Picture">
+        <h3>{{ profile.first_name }} {{ profile.last_name }}</h3>
+        <p>Gender: {{ profile.gender }}</p>
+        <p>Preferences: {{ profile.preference }}</p>
+        <p>Age: {{ profile.age }}</p>
+        <p>Zodiac Sign: {{ profile.zodiac_sign }}</p>
+        <p>Bio: {{ profile.bio }}</p>
+        <p>Email: {{ profile.email }}</p>
+        <p>Location: {{ profile.location }}</p>
+        <p>Interests: {{ profile.interests }}</p>
+        <button onclick="goToProfileHome()">Profile Home</button>
+        <button onclick="openModal({{ loop.index0 }})">View Profile Picture</button>
+      </div>
+    {% endfor %}
+  </div>
+  
+  <div id="modal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modal-img">
+    <div id="caption"></div>
+  </div>
+
+  <button id="prev-button" onclick="changeProfile(-1)">Previous</button>
+  <button id="next-button" onclick="changeProfile(1)">Next</button>
+
+  <script>
+    let currentProfileIndex = 0;
+    const profiles = document.querySelectorAll(".profile-card");
+    
+    const modal = document.getElementById("modal");
+    const modalImg = document.getElementById("modal-img");
+
+    function openModal(index) {
+  	modal.style.display = "block";
+  	const profileImg = profiles[index].querySelector("img");
+  	modalImg.src = profileImg.getAttribute('src');
+    }
+
+    document.querySelector(".close").addEventListener("click", () => {
+  	modal.style.display = "none";
+    });
+
+    function goToProfileHome() {
+      window.location.href = "{{ url_for('main.home_page') }}";
+    }
+
+    function showProfile(index) {
+      profiles.forEach(profile => profile.style.display = "none");
+      profiles[index].style.display = "block";
+    }
+
+    function changeProfile(direction) {
+      currentProfileIndex += direction;
+
+      if (currentProfileIndex < 0) {
+        currentProfileIndex = profiles.length - 1;
+      } else if (currentProfileIndex >= profiles.length) {
+        currentProfileIndex = 0;
+      }
+
+      showProfile(currentProfileIndex);
+    }
+
+    showProfile(currentProfileIndex);
+  </script>
+{% endblock %}

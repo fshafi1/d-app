@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block content %}
+ <head>
+		<link rel="stylesheet" href="../static/home_page.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	</head>
+  </body>
+  <div class="matches-container">
+    <a href="{{ url_for('views.home_page') }}" class="btn btn-primary">Back to Main Page</a>
+    <a href="{{ url_for('views.quiz') }}" class="btn btn-primary">Back to the Quiz Page</a>
+    {# <a href="{{ url_for('views.liked_disliked_profiles') }}">Liked and Disliked Profiles</a> #}
+    <a href="{{ url_for('views.liked_profiles') }}" class="btn btn-primary">Liked Profiles</a>
+    <a href="{{ url_for('views.disliked_profiles') }}" class="btn btn-primary">Disliked Profiles</a>
+   
+    <div class="wrapper">
+            <h1 style="">Potential Matches</h1>
+            <div class="cols">
+            {% for match in matches %}
+  <div class="col" ontouchstart="this.classList.toggle('hover');">
+    <div class="container">
+      <div class="front" style="background-image: url({{match.profilePicture}})">
+        <div class="inner">
+          <p>{{match.first_name}} {{match.last_name}}</p>
+          <span style="font-size: 20px; color: white;">{{match.zodiac_sign}}</span>
+        </div>
+      </div>
+      <div class="back">
+        <div class="inner">
+          <img src={{match.profilePicture}}>
+          <p>Name:  {{match.first_name}} {{match.last_name}} </p>
+          <p>Gender: {{match.gender}}</p>
+          <p>Age: {{match.age}}</p>
+          <p>Zodiac Sign: {{match.zodiacSign}} </p>
+          <p>Preference: {{match.preference}} </p>
+          <div class="backbtn">
+            <a class="like-btn" data-user-id="{{ match.user_id }}"><i class="fa fa-thumbs-up"></i></a>
+          <a class="dislike-btn" data-user-id="{{ match.user_id }}"><i class="fa fa-thumbs-down"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+
+  </div>
+  </body>
+  
+  <script>
+  // Add event listener to all like and dislike buttons
+  var likeBtns = document.querySelectorAll('.like-btn');
+  var dislikeBtns = document.querySelectorAll('.dislike-btn');
+  likeBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var userId = this.getAttribute('data-user-id');
+      var form = document.createElement('form');
+      form.setAttribute('method', 'POST');
+      form.setAttribute('action', '{{ url_for("views.like_profile") }}');
+      var input = document.createElement('input');
+      input.setAttribute('type', 'hidden');
+      input.setAttribute('name', 'liked_user_id');
+      input.setAttribute('value', userId);
+      form.appendChild(input);
+      document.body.appendChild(form);
+      form.submit();
+    });
+  });
+  dislikeBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var userId = this.getAttribute('data-user-id');
+      var form = document.createElement('form');
+      form.setAttribute('method', 'POST');
+      form.setAttribute('action', '{{ url_for("views.dislike_profile") }}');
+      var input = document.createElement('input');
+      input.setAttribute('type', 'hidden');
+      input.setAttribute('name', 'disliked_user_id');
+      input.setAttribute('value', userId);
+      form.appendChild(input);
+      document.body.appendChild(form);
+      form.submit();
+    });
+  });
+</script>
+
+{% endblock %}

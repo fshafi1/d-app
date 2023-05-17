@@ -1,0 +1,64 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/login.css') }}">
+  </link>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+  </head>
+  <body>
+    <div class="main0">
+      <div class="sub-main">
+          <div class="part">
+            <img style="width: 60%; height: 70%;" src="{{ url_for('static',filename='images/logo.svg') }}"  alt="D-APP logo">
+          </div>
+      </div>
+    </div>
+    <div class="main">
+      <div class="sub-main">
+          <div class="part">
+            <form action="" method="post" enctype="multipart/form-data">
+                  <h2>Sign up</h2>
+                  <div class="input_group">
+                    <i class="fa fa-user"></i>
+                    <input type="text" id="firstname" name="firstname" placeholder="First name" class="input_text" autocomplete="off" />
+                    
+                    <i class="fa fa-user"></i>
+                    <input type="text" id="lastname" name="lastname" placeholder="Last name" class="input_text" autocomplete="off" />
+                  </div>
+                  
+                  <div class="input_group">
+                    <i class="fa fa-user"></i>
+                    <input type="text" name="username" id="username" placeholder="Username" class="input_text" autocomplete="off"/>
+                    <i class="fa fa-envelope"></i>
+                    <input type="email" placeholder="Email" class="input_text" id="email"  name="email" />
+                  </div>
+  
+                  <div class="input_group">
+                    <i class="fa fa-unlock-alt"></i>
+                    <input type="password" name="password1" id="password1" placeholder="Password" class="input_text" autocomplete="off"/>
+                    
+                    <i class="fa fa-unlock-alt"></i>
+                    <input type="password"  placeholder="Confirm Password" name="password2" id="password2" class="input_text" autocomplete="off"/>
+                  </div>
+                  
+                  <div class="input_group upload">
+                    <input name="file" type="file" id="actual-btn" hidden/>
+                    <label for="actual-btn">Profile pic</label>
+                  </div>
+
+                  <div class="input_group ">
+                    <button class="btnbtn" type="submit"> sign up </button> 
+                  </div>
+                  
+                  <div class="input_group">
+                    <a>already have account ?</a>
+                    <a style="text-decoration: none; padding: 10px; color: aqua;" href="{{ url_for('auth.login') }}"  >log in</a>
+                  </div>
+            </form>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>

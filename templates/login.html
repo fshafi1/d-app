@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="../static/login.css">
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+  </head>
+  <body>
+    <div class="main0">
+      <div class="sub-main">
+          <div class="part">
+            <img style="width: 60%; height: 70%;" src="{{ url_for('static',filename='images/logo.svg') }}"  alt="D-APP logo">
+          </div>
+      </div>
+    </div>
+    <div class="main">
+
+      <div class="sub-main">
+          
+        <div class="part">
+            
+          <form action="" method="post" enctype="multipart/form-data">
+              <div class="login_form_container">
+                <div class="login_form">
+                  <h2>Sign in</h2>         
+                  <div class="input_group">
+                    <i class="fa fa-user"></i>
+                    <input type="email" placeholder="Email" class="input_text" id="email"  name="email" />
+                  </div>
+        
+                  <div class="input_group">
+                    <i class="fa fa-unlock-alt"></i>
+                    <input type="password" name="password" id="password" placeholder="Password" class="input_text" autocomplete="off"/>
+                  </div>
+             
+                  <div class="input_group ">
+                    <button class="btnbtn" type="submit"> sign in </button> 
+                  </div>
+                  
+                  <div class="input_group">
+                    <a>Don't have account ?</a>
+                    <a style="text-decoration: none; padding: 10px; color: aqua;" href="{{ url_for('auth.sign_up', gender='pass', preference='pass', zodiac="Taurus") }}" >Sign up</a>
+                  </div>
+                
+                </div>
+              </div>
+            </form>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>

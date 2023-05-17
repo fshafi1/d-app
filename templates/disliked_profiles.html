@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block content %}
+ <head>
+		<link rel="stylesheet" href="../static/home_page.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	</head>
+  </body>
+   <a href="{{ url_for('views.home_page') }}" class="btn btn-primary">Back to Main Page</a>
+  <a href="{{ url_for('views.matches') }}" class="btn btn-primary">Back to Potential Matches</a>
+  <a href="{{ url_for('views.liked_profiles') }}" class="btn btn-primary">Liked Profiles</a>
+  {# <a href="{{ url_for('views.liked_disliked_profiles') }}">Liked and Disliked Profiles</a> #}
+ <div class="wrapper">
+            <h1 style="">Disliked Profiles</h1>
+            <div class="cols">
+            {% for profile in disliked_profiles %}
+  <div class="col" ontouchstart="this.classList.toggle('hover');">
+    <div class="container">
+      <div class="front" style="background-image: url({{profile.profilePicture}})">
+        <div class="inner">
+          <p>{{profile.first_name}} {{profile.last_name}}</p>
+          <span style="font-size: 20px; color: white;">{{profile.zodiacSign}}</span>
+        </div>
+      </div>
+      <div class="back">
+        <div class="inner">
+          <img src={{profile.profilePicture}}>
+          <p>Name:  {{profile.first_name}} {{profile.last_name}} </p>
+          <p>Gender: {{profile.gender}}</p>
+          <p>Age: {{profile.age}}</p>
+          <p>Zodiac Sign: {{profile.zodiac_sign}} </p>
+          <p>Preference: {{profile.preference}} </p>
+          <div class="backbtn">
+            <a class="like-btn" data-user-id="{{ match.user_id }}"><i class="fa fa-thumbs-up"></i></a>
+            <a class="view-btn" data-user-id="{{ profile.user_id }}">View More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+    </div>
+  </div>
+  </body>
+  
+  <script>
+  /* Add event listener to all like and dislike buttons
+  var likeBtns = document.querySelectorAll('.like-btn');*/
+  var viewBtns = document.querySelectorAll('.view-btn');
+  /*likeBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var userId = this.getAttribute('data-user-id');
+      var form = document.createElement('form');
+      form.setAttribute('method', 'POST');
+      form.setAttribute('action', '{{ url_for("views.like_profile") }}');
+      var input = document.createElement('input');
+      input.setAttribute('type', 'hidden');
+      input.setAttribute('name', 'liked_user_id');
+      input.setAttribute('value', userId);
+      form.appendChild(input);
+      document.body.appendChild(form);
+      form.submit();
+    });
+  }); */
+  viewBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var userId = this.getAttribute('data-user-id');
+      var form = document.createElement('form');
+      form.setAttribute('method', 'POST');
+      form.setAttribute('action', '{{ url_for("views.view_profile") }}');
+      var input = document.createElement('input');
+      input.setAttribute('type', 'hidden');
+      input.setAttribute('name', 'profile_id');
+      input.setAttribute('value', userId);
+      form.appendChild(input);
+      document.body.appendChild(form);
+      form.submit();
+    });
+  });
+</script>
+  
+{% endblock %}
