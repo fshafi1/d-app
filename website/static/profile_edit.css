@@ -1,0 +1,116 @@
+body {
+    background-color: #000;
+}
+.box {
+    box-sizing: border-box;
+    width: 84%;
+    height: 80%;
+    border-left: 2px solid #00ccff;
+    border-top: 2px solid #00ccff ;
+    box-shadow: -10px -10px 14px #ffffff73,
+    3px 3px 5px rgba(94, 104,121, 0.288);
+    border-radius: 50px;
+    background-color: black;
+    margin-top: 80px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    padding: 10px;
+    float: center;
+    opacity: 0.8;
+}
+
+
+h2 {
+    color: gray;
+    margin-top: 30px;
+    font-size: 40px;
+    font-family: 'Roboto', sans-serif;
+}
+.box img {
+    box-sizing: border-box;
+    width: 15%;
+    height: 30%;
+    border-radius: 50%;
+    margin:20px;   
+    padding: 3px;
+    background-color: lightcoral;
+
+}
+.grp {
+    display: flex;
+    flex-direction: row;
+    margin-top: 3%;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.fa{
+    background-color: black;
+    color: #00ccff;
+    margin: 15px;
+  }
+
+.box input[type="text"],
+.box input[type="email"] {
+    display:block;
+    box-sizing: border-box;
+    background:none;
+    color: lightcoral;
+    margin-bottom: 30px;
+    padding: 4px;
+    width: 220px;
+    height: 32px;
+    border: none;
+    border-bottom: 1px solid bisque;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    transition: 0.2s ease;
+}
+
+.box input[type="text"]:focus,
+.box input[type="email"]:focus{
+    
+    border-bottom-right-radius: 20px;
+    color: #3498db;
+    transition: 0.2 ease;
+} 
+
+.box button{
+    border: 1px solid #3498db;
+    background-color: black;
+    columns: white;
+    height: 30px;
+    width: 100px;
+    border-radius: 5px;
+    margin: 50px;
+    transition: all 0.2s;
+    color: lightcoral ;
+}
+
+.box button:hover{
+    transform: scale(1.1);
+}
+
+.box input[type="file"]{
+    display: none;
+}
+
+.box label{
+    box-sizing: border-box;
+    font-size: 10px;
+    background-color: black;
+    color: white;
+    border: 1px solid lightcoral;
+    padding: 2px 15px;
+    border-radius: 5px;
+    transition: all 0.3s;
+    margin-bottom: 10px;
+}
+
+.box label:hover{
+    background-color: lightcoral;
+    color: black;
+}
+

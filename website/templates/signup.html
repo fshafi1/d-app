@@ -1,0 +1,113 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/login.css') }}">
+  </link>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+
+  <!---NEW --->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
+  </head>
+  <body>
+    <!---NEW --->
+    <div class="overall">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="notification">
+                   <a style="color: white;"> {{ messages[0] }}</a>
+                </div>
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <div class="main0">
+      <div class="sub-main">
+          <div class="part">
+            <img style="width: 60%; height: 70%;" src="{{ url_for('static',filename='images/logo.svg') }}"  alt="D-APP logo">
+          </div>
+      </div>
+    </div>
+    <div class="main">
+      <div class="sub-main">
+          <div class="part">
+            <form action="" method="post" enctype="multipart/form-data">
+                  <h2>Sign Up</h2>
+                  <div class="input_group">
+                    <i class="fa fa-user"></i>
+                    <input type="text" id="firstname" name="firstname" placeholder="First name" class="input_text" autocomplete="off" />
+                    
+                    <i class="fa fa-user"></i>
+                    <input type="text" id="lastname" name="lastname" placeholder="Last name" class="input_text" autocomplete="off" />
+                  </div>
+                  
+                  <div class="input_group">
+                    <i class="fa fa-user"></i>
+                    <input type="text" name="username" id="username" placeholder="Username" class="input_text" autocomplete="off"/>
+
+                    <!---NEW --->
+                    &nbsp
+
+                    <i class="fa fa-envelope"></i>
+                    <input type="email" placeholder="Email" class="input_text" id="email"  name="email" />
+                  </div>
+  
+                  <div class="input_group">
+                    <i class="fa fa-unlock-alt"></i>
+                    <input type="password" name="password1" id="password1" placeholder="Password" class="input_text" autocomplete="off"/>
+                    <!---NEW --->
+                    <i class="far fa-eye" id="eye" style="margin-left:-5%"></i>
+
+                    <script>
+                        const passwordInput = document.querySelector("#password1");
+                        const eye = document.querySelector("#eye");
+
+                        eye.addEventListener("click", function() {
+                            this.classList.toggle("fa-eye-slash");
+                            const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+                            passwordInput.setAttribute("type", type);
+                        });
+                    </script>
+
+                    <!---NEW --->
+                   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    
+                    <i class="fa fa-unlock-alt"></i>
+                    <input type="password"  placeholder="Confirm Password" name="password2" id="password2" class="input_text" autocomplete="off"/>
+                    <!---NEW --->
+                    <i class="far fa-eye" id="eye2" style="margin-left:-5%"></i>
+
+                    <script>
+                    const passwordInput2 = document.querySelector("#password2");
+                    const eye2 = document.querySelector("#eye2");
+
+                    eye2.addEventListener("click", function() {
+                            this.classList.toggle("fa-eye-slash");
+                            const type2 = passwordInput2.getAttribute("type") === "password" ? "text" : "password";
+                            passwordInput2.setAttribute("type", type2);
+                    });
+                    </script>
+
+                  </div>
+                  
+                  <div class="input_group upload">
+                    <input name="file" type="file" id="actual-btn" hidden/>
+                    <label for="actual-btn">Upload Profile Picture</label>
+                  </div>
+
+                  <div class="input_group ">
+                    <button class="btnbtn" type="submit"> Sign Up </button> 
+                  </div>
+                  
+                  <div class="input_group">
+                    <a>Already Have An Account?</a>
+                    <a style="text-decoration: none; padding: 10px; color: aqua;" href="{{ url_for('auth.login') }}"> Log In</a>
+                  </div>
+            </form>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>

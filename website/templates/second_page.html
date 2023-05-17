@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Landing page</title>
+    <link rel="stylesheet" href="../static/welcome.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <div class="navbar">
+        <div class="menu">
+            <h3 class="logo">D-<span>APP</span></h3>
+            <div class="hamburger-menu">
+              <div class="bar"></div>
+            </div>
+        </div>
+      </div>
+      <div class="main-container">
+        <div class="main">
+          <header>
+            <div class="overlay">
+              <div class="inner">
+                <div class="cols">
+                    <div class="col" ontouchstart="this.classList.toggle('hover');">
+                        <div class="container1">
+                            <div class="front" style="background-color: black;">
+                                  <div class="inner1"><p> looking for ...</p></div>
+                            </div>
+                            <div class="back"  style="background-color: black;">
+                                  <div class="inner1">
+                                    <a class="btn" href="{{ url_for('auth.third_page', gender=gender, preference='male')}}">Male</a>
+                                    <a class="btn" href="{{ url_for('auth.third_page', gender=gender, preference='female')}}">Female</a>
+                                    <a class="btn" href="{{ url_for('auth.third_page', gender=gender, preference='nb')}}">NB</a>
+                                    <a class="btn" href="{{ url_for('auth.third_page', gender=gender, preference='pass')}}">Pass</a>
+                                  </div>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+
+
+              </div>
+            </div>
+          </header>
+        </div>
+
+        <div class="shadow one"></div>
+        <div class="shadow two"></div>
+      </div>
+
+      <div class="links">
+        <ul>
+          <li>
+            <a href="{{ url_for('auth.login') }}" style="--i: 0.05s;">log in</a>
+            <span>  </span>
+          </li>
+          <li>
+            <a href="{{ url_for('auth.sign_up', gender='pass', preference='pass', zodiac="taurus") }}" style="--i: 0.1s;">sign up</a>
+            <span>  </span>
+          </li>
+          <li>
+            <a href="{{ url_for('auth.about') }}" style="--i: 0.25s;">  About</a>
+            <span>  </span>
+          </li>
+          <li>
+            <a href="#" style="--i: 0.3s;">  Contact</a>
+            <span>  </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <footer class="flex-rw">
+      <section class="footer-bottom-section flex-rw">
+            <i class="fa fa-copyright" role="copyright">
+            </i> 
+            2023 D-APP in 
+            <address class="footer-address" role="company address">&nbsp; Catonsville, MD &nbsp; </address>
+            <span class="footer-bottom-rights"> - All Rights Reserved.&nbsp;&nbsp; </span>
+            <span class="footer-bottom-rights"> Terms &nbsp; | &nbsp; </span>
+            <span class="footer-bottom-rights"> Privacy</span>    
+      </section>
+    </footer>
+
+    <script>
+      const hamburger_menu = document.querySelector(".hamburger-menu");
+        const container = document.querySelector(".container");
+
+        hamburger_menu.addEventListener("click", () => {
+        container.classList.toggle("active");
+        });
+        </script>
+        </body>
+        </html>

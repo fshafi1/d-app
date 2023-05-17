@@ -1,0 +1,84 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="../static/login.css">
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+  <!---NEW --->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
+  </head>
+  <body>
+    <!---NEW --->
+    <div class="overall">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="notification">
+                   <a style="color: white;"> {{ messages[0] }}</a>
+                </div>
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <div class="main0">
+      <div class="sub-main">
+          <div class="part">
+            <img style="width: 60%; height: 70%;" src="{{ url_for('static',filename='images/logo.svg') }}"  alt="D-APP logo">
+          </div>
+      </div>
+    </div>
+    <div class="main">
+
+      <div class="sub-main">
+          
+        <div class="part">
+            
+          <form action="" method="post" enctype="multipart/form-data">
+              <div class="login_form_container">
+                <div class="login_form">
+                  <h2>Sign In</h2>         
+                  <div class="input_group">
+                    <i class="fa fa-user"></i>
+                    <input type="email" placeholder="Email" class="input_text" id="email"  name="email" />
+                  </div>
+        
+                  <div class="input_group">
+                    <i class="fa fa-unlock-alt"></i>
+                    <input type="password" name="password" id="password" placeholder="Password" class="input_text" autocomplete="off"/>
+
+                    <!---NEW --->
+                    <i class="far fa-eye" id="eye" style="margin-left:-5%"></i>
+
+                    <script>
+                        const passwordInput = document.querySelector("#password");
+                        const eye = document.querySelector("#eye");
+
+                        eye.addEventListener("click", function() {
+                            this.classList.toggle("fa-eye-slash");
+                            const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+                            passwordInput.setAttribute("type", type);
+                        });
+                    </script>
+
+                    &nbsp&nbsp&nbsp&nbsp
+                  </div>
+
+                  
+             
+                  <div class="input_group ">
+                    <button class="btnbtn" type="submit"> Sign In </button> 
+                  </div>
+                  
+                  <div class="input_group">
+                    <a>Don't Have An Account?</a>
+                    <a style="text-decoration: none; padding: 10px; color: aqua;" href="{{ url_for('auth.welcome_page') }}" >Sign Up</a>
+                  </div>
+                
+                </div>
+              </div>
+            </form>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>

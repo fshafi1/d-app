@@ -1,0 +1,114 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="../static/home_page.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	</head>
+	<body>
+		<!-- -->		
+		<nav>
+			<!--Left side of the Nav bar -->
+			<div class="nav-left">
+				<img style="width: 50px;" src="static/images/logo.svg" class="logo" alt="D-APP">
+				<ul>
+					<li>
+						<img src="static/images/logo.svg">
+					</li>
+					<li>
+						<img src="static/images/logo.svg">
+					</li>
+				</ul>
+			</div>
+
+			<!--Right side of the Nav bar -->
+			<div class="nav-right">
+				<div class="search-box">
+					<button type="submit"><i class="fa fa-search" style="width: 10px; height: 10px;"></i></button>
+					<input type="text" placeholder="Search">
+				</div>
+				<div class="nav-user-icon" onclick="settingsMenuToggle();">
+					<img style="width: 100px; height: 100px;" src={{user.profilePicture}}>
+				</div>
+			
+			</div>
+			
+			<!--Setting menu -->
+			<div class="settings-menu">				
+				<div class="settings-menu-inner">
+					<div class="user-profile">
+						<img src={{user.profilePicture}}>
+						<div>
+							<p style="color: white;"> {{user.firstName}} {{user.lastName}} <a style="color: white;" href="#"> {{user.zodiacSign}}</a></p>
+							<a style="color: white;" href="{{url_for('views.profile_edit')}}">Edit Your Profile</a>
+						</div>
+					</div>
+					<hr>
+						<div class="settings-links">
+							<img src="static/images/setting.png" class="settings-icon">
+								<a style="color: white;" href="/payment">Subscription</a>
+						</div>
+					<hr>
+					<div class="settings-links">
+						<img src="static/images/logout.png" class="settings-icon">
+						<a style="color: white;" href="{{url_for('auth.login')}}">Logout</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+
+        <div class="wrapper">
+            <h1 style="">Recommended matches</h1>
+            <div class="cols">
+            {% for student in accounts %}
+           
+                <div class="col" ontouchstart="this.classList.toggle('hover');">
+                  <div class="container">
+                    
+                    <div class="front" style="background-image: url({{student.profilePicture}})">
+                      <div class="inner">
+                        <p>{{student.firstName}} {{student.lastName}}</p>
+                        <span style="font-size: 20px; color: white;">{{student.zodiacSign}}</span>
+                      </div>
+                    </div>
+
+                    <div class="back">
+                      <div class="inner">
+                        <img src={{student.profilePicture}}>
+                        <p>Name:  {{student.firstName}} {{student.lastName}} </p>
+                        <p>Gender: {{student.gender}}</p>
+                        <p>Zodiac Sign: {{student.zodiacSign}} </p>
+                        <p>Preference: {{student.preference}} </p>
+                        <p>Email: {{student.email}}</p>
+                        <div class="backbtn">
+                            <a class="btn">Smash</a>
+                            <a class="btn">Pass</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+          
+        
+            {% endfor %}
+
+            </div>
+		
+		<div class="footer">
+			<p>Copyright 2023 - D-APP</p>
+		</div>
+
+		<script>
+			var settingsMenu = document.querySelector('.settings-menu');
+			var darkBtn = document.getElementById('dark-btn');
+
+			function settingsMenuToggle(){
+				settingsMenu.classList.toggle('settings-menu-height');
+			}
+
+			darkBtn.onclick = function(){
+				darkBtn.classList.toggle('dark-btn-on');
+			document.body.classList.toggle('dark-theme');
+			}
+		</script>
+	</body>
+</html>

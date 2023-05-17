@@ -1,0 +1,324 @@
+
+
+input::placeholder {
+    color: white;
+  }
+  input:focus {
+    color: white;
+  }
+
+  input:valid:not(:focus) {
+    color: white;
+  }
+  input {
+    text-transform: uppercase;
+  }
+
+
+body {
+    background: linear-gradient(#141e30, #243b55);
+    box-sizing: border-box;
+    margin: 0;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: auto;
+}
+
+.pay-offer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 5%;
+    height: auto;
+    width: auto;
+    padding: 30px;
+}
+
+.credit-card {   
+    width: 550px;
+    height: 300px;
+    background: radial-gradient(80.07% 296.6% at 17.6% 5.94%, rgba(248, 60, 116, 0.264) 0%, rgba(255, 255, 255, 0.055) 100%);
+    backdrop-filter: blur(8px);
+    border-radius: 32px;
+    border: 4px solid bisque;
+}
+
+
+.yearly-box,  .monthly-box, .quarterly-box{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 135px;
+    margin: 15px;
+    height: 150px;
+    left: 122px;
+    top: 50px;
+    background: linear-gradient(180deg, #979AB8 40%, rgba(252, 186, 255, 0.5) 100%);
+    filter: drop-shadow(12px 14px 10px rgba(207, 138, 207, 0.7));
+    border-radius: 20px;
+    box-shadow: 0 0 0 0.55px white;
+    border: 2px solid bisque;
+}
+
+.yearly-price, .monthly-price, .quarterly-price {
+    display: flex;
+    width: 76px;
+    height: 48px;
+    margin: auto;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 48px;
+    color: #FFFFFF;
+    background: linear-gradient(180deg, #979AB8 40%, rgba(252, 186, 255, 0.5) 100%);
+}
+
+.yearly-text, .monthly-text, .quarterly-text {
+    display: flex;  
+    margin-top: 40px; 
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    /* identical to box height */
+    color: #FFFFFF;
+    background: linear-gradient(180deg, #979AB8 40%, rgba(252, 186, 255, 0.5) 100%);
+}
+
+/*Style the credit card*/
+
+
+#card-number{
+    position: relative;
+    width: 426px;
+    height: 19px;
+    left: 51px;
+    top: 60px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 0.62em;
+    /*Transparent*/
+    border: none;
+    border: none;
+    outline:none;
+    box-shadow: none;
+    background-color: transparent;
+    border: 1px solid bisque;
+}
+
+#expiry-date {
+    position: relative;
+    width: 80px;
+    height: auto;
+    left: 71px;
+    top: 80px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 11px;
+    /* identical to box height */
+    background-color: transparent;
+    letter-spacing: 0.43em;
+    color: #FFFFFF;
+    border: 1px solid bisque;
+}
+
+#card-holder-name {
+    position: relative;
+    width: 260px;
+    height: auto;
+    left: 51px;
+    top: 170px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 19px;
+    letter-spacing: 0.62em;
+    background: none;
+    border: 1px solid bisque;
+    color: black;
+}
+
+#cvv {
+    position: relative;
+    width: 60px;
+    height: auto;
+    left: 351px;
+    top: 80px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 15px;
+    /* identical to box height */
+    background-color: transparent;
+    letter-spacing: 0.43em;
+    color: #FFFFFF;
+    border: 1px solid bisque;
+}
+
+#submit-button {
+    position: relative;
+    justify-self: center;
+    top: 190px;
+    left: 200px;
+    float: end;
+    width: 100px;
+    border-bottom: 1px solid bisque;
+    border-left: 1px solid bisque;
+}    
+
+/* Small Mobile Device */
+@media (max-width: 320px) {
+    .credit-card {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        margin-top: auto;
+        margin-left: auto;
+        height: auto;
+        width: auto;
+      
+        background: radial-gradient(80.07% 296.6% at 17.6% 5.94%, rgba(248, 60, 116, 0.264) 0%, rgba(255, 255, 255, 0.055) 100%);
+        backdrop-filter: blur(8px);
+        border-radius: 32px;
+        border: 4px solid bisque;
+    }
+}
+
+/* Average Mobile Devices */
+@media (min-width: 320px) and (max-width: 480px) {
+    .credit-card {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        margin-top: auto;
+        margin-left: auto;
+        height: auto;
+        width: auto;
+        width: 550px;
+        height: 300px;
+        background: radial-gradient(80.07% 296.6% at 17.6% 5.94%, rgba(248, 60, 116, 0.264) 0%, rgba(255, 255, 255, 0.055) 100%);
+        backdrop-filter: blur(8px);
+        border-radius: 32px;
+        border: 4px solid bisque;
+    }
+}
+
+/* Tablet and IPads */
+@media (min-width: 481px) and (max-width: 768px) {
+    .credit-card {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        margin-top: auto;
+        margin-left: auto;
+        width: auto;
+        height: 400x;
+        background: radial-gradient(80.07% 296.6% at 17.6% 5.94%, rgba(248, 60, 116, 0.264) 0%, rgba(255, 255, 255, 0.055) 100%);
+        backdrop-filter: blur(8px);
+        border-radius: 32px;
+        border: 4px solid bisque;
+    }
+
+    #card-number{
+        position: relative;
+        width: 426px;
+        height: 19px;
+        left: 51px;
+        top: 7px;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        letter-spacing: 0.62em;
+        /*Transparent*/
+        border: none;
+        border: none;
+        outline:none;
+        box-shadow: none;
+        background-color: transparent;
+        border: 1px solid bisque;
+    }
+    
+    #expiry-date {
+        position: relative;
+        width: 80px;
+        height: auto;
+        left: 71px;
+        top: 15px;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 11px;
+        /* identical to box height */
+        background-color: transparent;
+        letter-spacing: 0.43em;
+        color: #FFFFFF;
+        border: 1px solid bisque;
+    }
+    
+    #card-holder-name {
+        position: relative;
+        width: 260px;
+        height: auto;
+        left: 51px;
+        top: 80px;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 19px;
+        letter-spacing: 0.62em;
+        background: none;
+        border: 1px solid bisque;
+        color: black;
+    }
+    
+    #cvv {
+        position: relative;
+        width: 60px;
+        height: auto;
+        left: 351px;
+        top: 15px;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 15px;
+        /* identical to box height */
+        background-color: transparent;
+        letter-spacing: 0.43em;
+        color: #FFFFFF;
+        border: 1px solid bisque;
+    }
+    
+    #submit-button {
+        position: relative;
+        justify-self: center;
+        top: 100px;
+        left: 200px;
+        float: end;
+        width: 100px;
+        border-bottom: 1px solid bisque;
+        border-left: 1px solid bisque;
+    }   
+}

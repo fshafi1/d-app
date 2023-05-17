@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <style>
+        ul {
+            list-style-type:none;
+            margin: 0;
+            padding: 0;          
+            overflow: hidden;
+            background-color: lightcoral;
+        }
+
+        li {
+            float: right;
+            border-right: 1px solid ghostwhite;
+        }        
+
+        li a {
+            display: block;
+            color: ghostwhite;
+            text-align: center;
+            padding: 10px 16px;
+            text-decoration: none;
+        }
+    </style>
+    <body style="background-color:ghostwhite">    
+       <ul>
+           <li><a href= "#picture"</a>Picture </li>
+           <li><a href= "#settings"</a>Settings</li>
+           <li><a href= "#messages"</a>Messages</li>
+           <li><a href= "#matches"</a>Matches</li>
+           <li><a href= "{{ url_for('main.home_page') }} "</a>Home</li>
+      </ul>  
+    </body>
+{% endblock %}
+

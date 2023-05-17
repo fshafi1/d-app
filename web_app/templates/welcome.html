@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <style>
+        .box {
+            position: absolute;
+            top: 15px;
+            right: 10px;
+            width: 15%;
+            height: 40px;
+            border; 1px solid silver;
+            background: lightcoral;
+            color: white;
+            font-weight: 500;
+        }
+
+        .login_link {
+            margin: 10px;
+            font-size: 16px;
+        }
+    </style>
+
+    <body style="background-color:ghostwhite">
+      <div class="box">
+          <div class="login_link">
+              Already a member? <a href="{{ url_for('auth.login') }}">Log In</a>
+         </div>
+      </div>
+
+      <h3>{% block title %} Welcome! Are you ready to find your true match? {% endblock %}</h3>
+      <h3> Chose the one that best describes you. </h3>
+
+      <div class='option'>
+        <nav> <a href="{{ url_for('main.second_page', gender='Female') }}">Female</a> </nav>
+      </div>
+
+      <div class='option'>
+         <nav> <a href="{{ url_for('main.second_page', gender='Male') }}">Male</a> </nav>
+      </div>
+
+      <div class='option'>
+         <nav> <a href="{{ url_for('main.second_page', gender='Non-binary') }}">Non-binary</a> </nav>
+      </div>
+    </body>
+{% endblock %}

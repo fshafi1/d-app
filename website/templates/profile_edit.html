@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="../static/profile_edit.css">
+        <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+      />
+    </head>
+    <body>
+        <center>
+            <h2>Edit your profile</h2>
+            <div class="box">
+                <form action="" method="post" enctype="multipart/form-data">
+                    <img src={{user.profilePicture}} alt="">
+                    <input type="file" name="file" id="file">
+                    <label for="file">Edit profile picture</label>
+                    <div class="grp">
+                       
+                        <i class="fa fa-user"></i>
+                        <input type="text" name="firstname" id="firstname" placeholder={{user.firstName}}>    
+
+                        <i class="fa fa-user"></i>
+                        <input type="text" name="lastname" id="lastname" placeholder={{user.lastName}}>    
+
+                    </div>
+
+                    <div class="grp">
+                        <i class="fa fa-user"></i>
+                        <input type="text" name="username" id="username" placeholder={{user.userName}}>    
+            
+                        <i class="fa fa-envelope"></i>
+                        <input type="email" name="email" id="email" placeholder={{user.email}}>    
+                    </div>
+
+                    <div class="grp">
+                       
+                        <i class="fa fa-user"></i>
+                        <input type="text" name="gender" id="gender" placeholder={{user.gender}}>    
+
+                        <i class="fa fa-user"></i>
+                        <input type="text" name="preference" id="preference" placeholder={{user.preference}}>    
+
+                    </div>
+                   
+                    <button type="reset" style="margin:10px 0 0 18.2%;">Cancel</button>
+                    <button type="submit"    style="margin:10px 18.2% 0 0;">Save</button>
+                </form>
+            </div>
+        </center>
+    </body>
+</html>
+
+
+
+

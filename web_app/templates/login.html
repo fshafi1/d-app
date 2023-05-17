@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <meta name="viewpoint" content="width=device-width, initial-scale=1">
+    <style>
+        .overall {
+            width: 150%;
+            height: 100vh;
+            background: linear-gradient(ghostwhite, lightcoral);
+        }
+
+        .notification {
+            padding: 10px;
+            background-color: lightcoral;
+            color: white;
+         }
+
+        .overall .box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            background-color: white;
+            border-radius: 10px;
+        }
+
+        .overall form {
+            padding: 0 90px;
+            box-sizing: border-box;
+        }
+
+        form input {
+            height: 25px;
+            width: 90%;
+            padding: 0 10px;
+            border-radius: 3px;
+            border: 1px solid silver;
+            margin-top: 10px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            height: 25px;
+            border; 1px solid silver;
+            background: lightcoral;
+            color: white;
+            font-weight: 500;
+        }
+
+        input[type="checkbox"] {
+            width: 8%;
+            box-sizing: border-box;
+            cursor: default;
+        }
+
+        .signup_link {
+            margin: 20px 0;
+            text-align: center;
+            font-size: 16px;
+        }
+
+    </style>
+
+    <script>
+        function show_password() {
+            var x = document.getElementById("myPassword");
+            if (x.type == "password") {
+                x.type = "type";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
+
+    <div class="overall">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="notification">
+                   <a> {{ messages[0] }}</a>
+                </div>
+            {% endif %}
+        {% endwith %}
+        <div class="box">
+            <h1><center>Log In</center></h1>
+            <form method="POST" >
+                <div class="txt_field">
+                    <input type="text" name="email" placeholder="Email" autofocus="">
+                </div>
+
+                <div class="txt_field">
+                    <input type="text" name="username" placeholder="Username" autofocus="">
+                </div>
+
+                <div class="txt_field">
+                    <input type="password" name="password" placeholder="Password" id="myPassword">
+                    <input type="checkbox" onclick="show_password()"> Show Password
+                </div>
+
+                <input type="submit" value="Log In">
+
+                <div class="signup_link">
+                    Not a member? <a href="{{ url_for('main.welcome_page')}}">Sign Up</a>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
